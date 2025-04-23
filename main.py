@@ -1,12 +1,11 @@
-import logging, handlers
-from config import client
-# from handlers import *
-
-logging.basicConfig(level=logging.INFO)
-
+import logging
+from config import client, bot_token
+from handlers import *
 
 if __name__ == '__main__':
-    # client.add_event_handler(handlers.user_update_handler)
-    client.add_event_handler(handlers.new_message_handler)
-    client.start()
+    logging.basicConfig(level=logging.INFO)
+
+    client.add_event_handler(user_update_handler)
+    # client.add_event_handler(new_message_handler)
+    client.start(bot_token=bot_token)
     client.run_until_disconnected()

@@ -47,4 +47,4 @@ async def send_msg_with_typing(event, text: str) -> None:
     async with client.action(event.chat_id, 'typing'):
         await asyncio.sleep(get_time_to_type_text(text))
         await event.reply(text)
-    # await asyncio.sleep(60)
+    await asyncio.sleep(60)
