@@ -16,13 +16,13 @@ event_data = {
 
 
 @events.register(events.UserUpdate)
-async def user_update_handler(event):
+async def user_update_handler(event) -> None:
     chat = await event.get_chat()
     if not await valid_chat(chat):
         return
     chat_id = chat.id
 
-    async def animate_voice_recording():
+    async def animate_voice_recording() -> None:
         async with client.action(chat_id, 'record-audio'):
             await asyncio.sleep(3 + 2 * random_time_delta())
         await client.action(chat_id, 'cancel')
@@ -36,19 +36,13 @@ async def user_update_handler(event):
 
 
 @events.register(events.NewMessage(incoming=True))
-async def new_message_handler(event):
+async def new_message_handler(event) -> None:
     chat_id = event.chat_id
     timeout = 60
     start_time = asyncio.get_event_loop().time()
 
-    await asyncio.sleep(random.random())
-    await client.send_read_acknowledge(
-        entity=event.chat_id,
-        message=event.id,
-        max_id=event.id
-    )
+    await read_message(event)
     
-    print(start_time - event_data['timers'].get(chat_id, 0))
     if (
         event.text and
         'чиназес' in event.text and
