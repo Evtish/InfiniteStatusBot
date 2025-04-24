@@ -6,5 +6,5 @@ load_dotenv()  # create .env file and put your api_id and api_hash into correspo
 
 api_id = getenv('api_id')
 api_hash = getenv('api_hash')
-bot_token = getenv('bot_token')  # if you use bot
+bot_token = getenv('token')  # if you use bot
 client = TelegramClient('main', api_id, api_hash)  # your session file must be called main.session
