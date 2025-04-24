@@ -38,7 +38,7 @@ async def user_update_handler(event):
 @events.register(events.NewMessage(incoming=True))
 async def new_message_handler(event):
     chat_id = event.chat_id
-    timeout = 10
+    timeout = 60
     start_time = asyncio.get_event_loop().time()
 
     await asyncio.sleep(random.random())
